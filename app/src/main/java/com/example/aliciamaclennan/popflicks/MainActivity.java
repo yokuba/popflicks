@@ -1,13 +1,32 @@
 package com.example.aliciamaclennan.popflicks;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.ListActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ListActivity
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+    {
+
+        String[] itemname ={
+                "Fight Club",
+                "The Lobster",
+                "Gravity",
+                "2001: Space Odyssey",
+                "The Apartment",
+                "Alien",
+                "The King and I",
+                "The Bridge"
+        };
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+
+            this.setListAdapter(new ArrayAdapter<String>(
+                    this, R.layout.movie_list,
+                    R.id.empty_view,itemname));
+        }
+
 }
