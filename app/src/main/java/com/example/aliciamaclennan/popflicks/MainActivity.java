@@ -28,5 +28,4 @@ public class MainActivity extends ListActivity
                     this, R.layout.movie_list,
                     R.id.empty_view,itemname));
         }
-
 }
