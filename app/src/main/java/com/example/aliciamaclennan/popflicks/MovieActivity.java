@@ -4,7 +4,7 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
-public class MainActivity extends ListActivity
+public class MovieActivity extends ListActivity
 
     {
 
