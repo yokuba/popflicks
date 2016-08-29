@@ -12,24 +12,19 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MovieActivity extends AppCompatActivity
+public class MovieActivity extends AppCompatActivity
                 implements LoaderCallbacks<List<Movie>> {
 
-private static final String LOG_TAG = MovieActivity.class.getName();
+    private static final String LOG_TAG = MovieActivity.class.getName();
+    private static final String MOVIE_REQUEST_URL =
+        "https://api.themoviedb.org/3/movie/popular?api_key=&append_to_release=videos";
 
-
-private static final String MOVIE_REQUEST_URL =
-    "https://api.themoviedb.org/3/movie/popular?api_key=a1a85e7c222c06c7ce7595fc8d963767&append_to_release=videos"
-
-private static final int MOVIE_LOADER_ID = 1;
-
-private MovieAdapter mAdapter;
-
-private TextView mEmptyStateTextView;
+    private static final int MOVIE_LOADER_ID = 1;
+    private MovieAdapter mAdapter;
+    private TextView mEmptyStateTextView;
     private List<Movie> movies;
 
     @Override
@@ -76,7 +71,7 @@ protected void onCreate(Bundle savedInstanceState) {
         // Update empty state with no connection error message
         mEmptyStateTextView.setText(R.string.no_internet_connection);
         }
-        }
+    }
 
 @Override
 public Loader<List<Movie>> onCreateLoader(int i, Bundle bundle) {
@@ -85,35 +80,29 @@ public Loader<List<Movie>> onCreateLoader(int i, Bundle bundle) {
         }
 
     @Override
-    public void onLoadFinished(android.content.Loader<List<Movie>> loader, List<Movie> data) {
+    public void onLoadFinished(Loader<List<Movie>> loader, List<Movie> movies) {
         View loadingIndicator = findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
 
-        // Set empty state text to display "No earthquakes found."
+        // Set empty state text to display "No movies"
         mEmptyStateTextView.setText(R.string.no_movies);
 
-        // Clear the adapter of previous earthquake data
+        // Clear the adapter of previous movie data
         mAdapter.clear();
 
-        // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
+        // If there is a valid list of Movies, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (movies != null && !movies.isEmpty()) {
             mAdapter.addAll(movies);
         }
 
     }
-
-
-
-
-
-
-@Override
-public void onLoaderReset(Loader<Object> loader) {
+    @Override
+    public void onLoaderReset(Loader<List<Movie>> loader) {
         // Loader reset, so we can clear out our existing data.
         mAdapter.clear();
-        }
-        }
+    }
+}
 
 
 
@@ -152,7 +141,7 @@ public void onLoaderReset(Loader<Object> loader) {
 //            setContentView(R.layout.activity_main);
 //
 //            this.setListAdapter(new ArrayAdapter<String>(
-//                    this, R.layout.movie_list,
+//                    this, R.layout.movie_list_item,
 //                    R.id.empty_view,itemname));
 //        }
 //}
