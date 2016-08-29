@@ -16,10 +16,6 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
     private Context mContext;
 
-    @Override
-    public int getCount() {
-        return 0;
-    }
     public MovieAdapter(Context context, List<Movie> movies) {
         super(context, 0, movies);
     }
@@ -47,9 +43,5 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         // Return the list item view that is now showing the appropriate data
         return listItemView;
-    }
-
-    public Context getContext() {
-        return mContext;
     }
 }

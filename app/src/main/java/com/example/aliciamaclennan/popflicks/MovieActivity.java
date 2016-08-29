@@ -25,7 +25,6 @@ public class MovieActivity extends AppCompatActivity
     private static final int MOVIE_LOADER_ID = 1;
     private MovieAdapter mAdapter;
     private TextView mEmptyStateTextView;
-    private List<Movie> movies;
 
     @Override
 protected void onCreate(Bundle savedInstanceState) {
