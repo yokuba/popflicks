@@ -11,9 +11,16 @@
         android:layout_gravity="center"
         android:padding="16dp"/>
     <TextView
-        android:id="@+id/empty_view"
+        android:id="@+id/title"
         android:layout_gravity="center"
         android:text="Hello World!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"/>
+    <TextView
+        android:id="@+id/description"
+        android:layout_gravity="center"
+        android:text="Title!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"/>
