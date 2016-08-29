@@ -20,7 +20,7 @@ public class MovieActivity extends AppCompatActivity
 
     private static final String LOG_TAG = MovieActivity.class.getName();
     private static final String MOVIE_REQUEST_URL =
-        "https://api.themoviedb.org/3/movie/popular?api_key=&append_to_release=videos";
+        "https://api.themoviedb.org/3/movie/popular?api_key=" + BuildConfig.THE_MOVIE_DB_API_KEY + "&append_to_release=videos";
 
     private static final int MOVIE_LOADER_ID = 1;
     private MovieAdapter mAdapter;
