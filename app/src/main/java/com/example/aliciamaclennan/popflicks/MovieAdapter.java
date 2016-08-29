@@ -42,12 +42,11 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         String title = currentMovie.getTitle();
         titleView.setText(title);
 
+        TextView descriptionView = (TextView) listItemView.findViewById(R.id.description);
+        String description = currentMovie.getDescription();
+        descriptionView.setText(description);
 
-//        // Find the ImageView with view ID title
-//        ImageView posterView = (ImageView) listItemView.findViewById(R.id.movie_thumbnail);
-//        String image = currentMovie.getImage();
-//        posterView.set
-//        currentMovie.setImage();
+        
 
 
         ViewHolder holder = new ViewHolder();
