@@ -11,11 +11,14 @@ public class Movie {
 
     private String mRelease;
 
+    private String mPoster;
 
-    public Movie(String title, String description, String release) {
+
+    public Movie(String title, String description, String release, String poster) {
         mTitle = title;
         mDescription = description;
         mRelease = release;
+        mPoster = poster;
     }
 
     public String getTitle() { return mTitle; }
@@ -23,5 +26,7 @@ public class Movie {
         return mDescription;
     }
     public String getRelease() { return mRelease; }
+    public String getImage() { return mPoster; }
+    public void setImage(String image) { this.mPoster = image;}
 }
 

@@ -1,6 +1,5 @@
 package com.example.aliciamaclennan.popflicks;
 
-import android.media.Image;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -174,7 +173,7 @@ public final class QueryUtils {
 
                 // Create a new {@link Earthquake} object with the magnitude, location, time,
                 // and url from the JSON response.
-                Movie movie = new Movie(title, description, release);
+                Movie movie = new Movie(title, description, release, poster);
 
                 // Add the new {@link Earthquake} to the list of earthquakes.
                 movies.add(movie);
