@@ -46,7 +46,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         String description = currentMovie.getDescription();
         descriptionView.setText(description);
 
-        
+
 
 
         ViewHolder holder = new ViewHolder();
