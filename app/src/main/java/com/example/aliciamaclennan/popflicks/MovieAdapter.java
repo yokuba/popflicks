@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.io.InputStream;
 import java.util.List;
@@ -38,13 +37,13 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         Movie currentMovie = getItem(position);
 
         // Find the TextView with view ID title
-        TextView titleView = (TextView) listItemView.findViewById(R.id.title);
-        String title = currentMovie.getTitle();
-        titleView.setText(title);
-
-        TextView descriptionView = (TextView) listItemView.findViewById(R.id.description);
-        String description = currentMovie.getDescription();
-        descriptionView.setText(description);
+//        TextView titleView = (TextView) listItemView.findViewById(R.id.title);
+//        String title = currentMovie.getTitle();
+//        titleView.setText(title);
+//
+//        TextView descriptionView = (TextView) listItemView.findViewById(R.id.description);
+//        String description = currentMovie.getDescription();
+//        descriptionView.setText(description);
 
 
 

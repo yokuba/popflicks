@@ -9,7 +9,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ListView;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
 
         // Find a reference to the {@link ListView} in the layout
-        ListView movieListView = (ListView) findViewById(R.id.movie_list);
+        GridView movieListView = (GridView) findViewById(R.id.movie_list);
 
         mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
         movieListView.setEmptyView(mEmptyStateTextView);
