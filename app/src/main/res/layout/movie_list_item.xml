@@ -16,6 +16,8 @@
             android:padding="16dp"/>
         <TextView
             android:id="@+id/title"
+            android:textSize="24sp"
+            android:textColor="#DA72BA"
             android:layout_gravity="center"
             android:text="Hello World!"
             android:layout_width="wrap_content"
@@ -26,6 +28,7 @@
         android:id="@+id/description"
         android:layout_below="@+id/movie_headline"
         android:text="description!"
+        android:maxLines="2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"/>
