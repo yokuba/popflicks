@@ -2,4 +2,6 @@
     <string name="app_name">Popflicks</string>
     <string name="no_movies">No movies</string>
     <string name="no_internet_connection">Connect to the internet, please.</string>
+    <string name="settings_menu_item">Settings</string>
+    <string name="settings_title">Search Movies</string>
 </resources>
