@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
           android:name="com.example.aliciamaclennan.popflicks.MovieFragment$MovieDetail"
           xmlns:tools="http://schemas.android.com/tools"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:background="#9A72BA"
           tools:context="com.example.aliciamaclennan.popflicks.MovieActivity"
           android:id="@+id/popular">
-</fragment>
+     <Button
+         android:id="@+id/most_popular_movies"
+         android:text="Give me popular movies!"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_centerInParent="true"
+         android:layout_margin="16dp"/>
+     <Button
+         android:id="@+id/highest_rated_movies"
+         android:text="Give me highest rated movies!"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@id/most_popular_movies"
+         android:layout_margin="16dp"/>
+</RelativeLayout>
