@@ -1,7 +1,7 @@
 package com.example.aliciamaclennan.popflicks;
 
+
 import android.app.LoaderManager;
-import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
@@ -12,14 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MovieActivity extends AppCompatActivity
-                implements LoaderCallbacks<List<Movie>> {
+                implements LoaderManager.LoaderCallbacks<List<Movie>> {
 
     private static final String LOG_TAG = MovieActivity.class.getName();
     private static final String MOVIE_REQUEST_URL =
@@ -33,6 +35,14 @@ public class MovieActivity extends AppCompatActivity
 protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+            Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.search_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
 
         // Find a reference to the {@link ListView} in the layout
         GridView movieListView = (GridView) findViewById(R.id.movie_list);
@@ -121,12 +131,4 @@ public Loader<List<Movie>> onCreateLoader(int i, Bundle bundle) {
         return super.onOptionsItemSelected(item);
     }
 
-//    Spinner spinner = (Spinner) findViewById(R.id.spinner);
-//    // Create an ArrayAdapter using the string array and a default spinner layout
-//    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-//            R.array.search_array, android.R.layout.simple_spinner_item);
-//// Specify the layout to use when the list of choices appears
-//    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//// Apply the adapter to the spinner
-//    spinner.setAdapter(adapter);
 }
