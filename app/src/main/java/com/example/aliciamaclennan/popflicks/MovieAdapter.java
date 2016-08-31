@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.List;
@@ -17,7 +19,7 @@ import java.util.List;
 /**
  * Created by amac on 8/27/16.
  */
-public class MovieAdapter extends ArrayAdapter<Movie> {
+public class MovieAdapter extends ArrayAdapter<Movie> implements AdapterView.OnItemClickListener {
 
     private Context mContext;
 
@@ -59,6 +61,12 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
     // Return the list item view that is now showing the appropriate data
     return listItemView;
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Toast.makeText(getContext(), "You clicked on ", Toast.LENGTH_SHORT);
     }
 
     static class ViewHolder {
