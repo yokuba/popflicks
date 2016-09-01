@@ -7,10 +7,12 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +28,16 @@ public class MovieFragment  extends AppCompatActivity implements LoaderManager.L
 
 
     private static final String LOG_TAG = MovieActivity.class.getName();
+    private static final String HIGHEST_RATED = "/top_rated";
+    private static final String POPULAR = "/popular";
+    private static final String NOW_PLAYING = "/now_playing";
     private static final String MOVIE_REQUEST_URL =
-            "https://api.themoviedb.org/3/movie/popular?api_key=" + BuildConfig.THE_MOVIE_DB_API_KEY + "&append_to_release=videos";
+            "https://api.themoviedb.org/3/movie" + NOW_PLAYING + "?api_key=" + BuildConfig.THE_MOVIE_DB_API_KEY;
 
     private static final int MOVIE_LOADER_ID = 1;
     private MovieAdapter mAdapter;
     private TextView mEmptyStateTextView;
-
+    private Movie movie;
 
 
     @Override
@@ -49,7 +54,7 @@ public class MovieFragment  extends AppCompatActivity implements LoaderManager.L
         spinner.setAdapter(adapter);
 
         // Find a reference to the {@link ListView} in the layout
-        GridView movieListView = (GridView) findViewById(R.id.movie_list);
+        final GridView movieListView = (GridView) findViewById(R.id.movie_list);
 
         mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
         movieListView.setEmptyView(mEmptyStateTextView);
@@ -60,7 +65,14 @@ public class MovieFragment  extends AppCompatActivity implements LoaderManager.L
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         movieListView.setAdapter(mAdapter);
+        movieListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                movie = (Movie) mAdapter.getItem(position);
+                Toast.makeText(getApplicationContext(), "What is " + movie.getTitle(), Toast.LENGTH_LONG).show();
 
+            }
+        });
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager)
@@ -110,7 +122,9 @@ public class MovieFragment  extends AppCompatActivity implements LoaderManager.L
         // data set. This will trigger the ListView to update.
         if (movies != null && !movies.isEmpty()) {
             mAdapter.addAll(movies);
+
         }
+
 
     }
     @Override

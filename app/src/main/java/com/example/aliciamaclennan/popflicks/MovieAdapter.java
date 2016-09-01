@@ -21,7 +21,6 @@ import java.util.List;
  */
 public class MovieAdapter extends ArrayAdapter<Movie> implements AdapterView.OnItemClickListener {
 
-    private Context mContext;
 
     public MovieAdapter(Context context, List<Movie> movies) {
         super(context, 0, movies);
@@ -29,45 +28,57 @@ public class MovieAdapter extends ArrayAdapter<Movie> implements AdapterView.OnI
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View listItemView = convertView;
-        if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
+        View gridItemView = convertView;
+        if (gridItemView == null) {
+            gridItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.movie_list_item, parent, false);
         }
 
 
         Movie currentMovie = getItem(position);
+   //     gridItemView.setOnClickListener();
+//         Find the TextView with view ID title
+        //TextView titleView = (TextView) gridItemView.findViewById(R.id.title);
+        String title = currentMovie.getTitle();
+        //titleView.setText(title);
 
-        // Find the TextView with view ID title
-//        TextView titleView = (TextView) listItemView.findViewById(R.id.title);
-//        String title = currentMovie.getTitle();
-//        titleView.setText(title);
-//
-//        TextView descriptionView = (TextView) listItemView.findViewById(R.id.description);
-//        String description = currentMovie.getDescription();
-//        descriptionView.setText(description);
+        //TextView descriptionView = (TextView) gridItemView.findViewById(R.id.description);
+        String description = currentMovie.getDescription();
+        //Log.d(String.valueOf(this.getClass()),"Title: " + title + " and Plot: " + description);
+        //descriptionView.setText(description);
 
 
 
 
         ViewHolder holder = new ViewHolder();
-        holder.imageview = (ImageView) listItemView.findViewById(R.id.movie_thumbnail);
+        holder.imageview = (ImageView) gridItemView.findViewById(R.id.movie_thumbnail);
 
-        listItemView.setTag(holder);
+        gridItemView.setTag(holder);
 
         holder.imageview.setImageResource(R.drawable.ic_pop_action);
         new DownloadImageTask(holder.imageview).execute(currentMovie.getImage());
 
     // Return the list item view that is now showing the appropriate data
-    return listItemView;
+    return gridItemView;
 
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        Toast.makeText(getContext(), "You clicked on ", Toast.LENGTH_SHORT);
+        Toast.makeText(getContext(), "You clicked on " + this, Toast.LENGTH_SHORT).show();
     }
+//    @Override
+//    public View getView(final int position, View convertView, ViewGroup parent) {
+//        final ImageView imageView = new ImageView(getContext());
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (getOnItemClickListener() != null) {
+//                    getOnItemClickListener().onItemClick(MyGridView.this, v, position, getItemId(position));
+//                } return imageView;
+//            }
+
+
 
     static class ViewHolder {
         public ImageView imageview;
@@ -101,7 +112,4 @@ public class MovieAdapter extends ArrayAdapter<Movie> implements AdapterView.OnI
 
 
     }
-
-
-
 }

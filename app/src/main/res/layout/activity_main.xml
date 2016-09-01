@@ -20,7 +20,9 @@
         android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="auto_fit"/>
+        android:numColumns="auto_fit"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
     <TextView
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
