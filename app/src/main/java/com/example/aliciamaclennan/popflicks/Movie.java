@@ -27,6 +27,5 @@ public class Movie {
     }
     public String getRelease() { return mRelease; }
     public String getImage() { return mPoster; }
-    public void setImage(String image) { this.mPoster = image;}
 }
 

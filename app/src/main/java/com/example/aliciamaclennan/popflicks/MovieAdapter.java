@@ -8,10 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.List;
@@ -19,7 +17,7 @@ import java.util.List;
 /**
  * Created by amac on 8/27/16.
  */
-public class MovieAdapter extends ArrayAdapter<Movie> implements AdapterView.OnItemClickListener {
+public class MovieAdapter extends ArrayAdapter<Movie>  {
 
 
     public MovieAdapter(Context context, List<Movie> movies) {
@@ -36,19 +34,6 @@ public class MovieAdapter extends ArrayAdapter<Movie> implements AdapterView.OnI
 
 
         Movie currentMovie = getItem(position);
-   //     gridItemView.setOnClickListener();
-//         Find the TextView with view ID title
-        //TextView titleView = (TextView) gridItemView.findViewById(R.id.title);
-        String title = currentMovie.getTitle();
-        //titleView.setText(title);
-
-        //TextView descriptionView = (TextView) gridItemView.findViewById(R.id.description);
-        String description = currentMovie.getDescription();
-        //Log.d(String.valueOf(this.getClass()),"Title: " + title + " and Plot: " + description);
-        //descriptionView.setText(description);
-
-
-
 
         ViewHolder holder = new ViewHolder();
         holder.imageview = (ImageView) gridItemView.findViewById(R.id.movie_thumbnail);
@@ -63,20 +48,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> implements AdapterView.OnI
 
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getContext(), "You clicked on " + this, Toast.LENGTH_SHORT).show();
-    }
-//    @Override
-//    public View getView(final int position, View convertView, ViewGroup parent) {
-//        final ImageView imageView = new ImageView(getContext());
-//        imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (getOnItemClickListener() != null) {
-//                    getOnItemClickListener().onItemClick(MyGridView.this, v, position, getItemId(position));
-//                } return imageView;
-//            }
+
 
 
 

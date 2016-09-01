@@ -2,6 +2,7 @@ package com.example.aliciamaclennan.popflicks;
 
 import android.app.LoaderManager;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -12,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class MovieFragment  extends AppCompatActivity implements LoaderManager.L
     private static final int MOVIE_LOADER_ID = 1;
     private MovieAdapter mAdapter;
     private TextView mEmptyStateTextView;
-    private Movie movie;
+
 
 
     @Override
@@ -62,14 +62,21 @@ public class MovieFragment  extends AppCompatActivity implements LoaderManager.L
         // Create a new adapter that takes an empty list of movies as input
         mAdapter = new MovieAdapter(this, new ArrayList<Movie>());
 
-        // Set the adapter on the {@link ListView}
-        // so the list can be populated in the user interface
+
         movieListView.setAdapter(mAdapter);
         movieListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                movie = (Movie) mAdapter.getItem(position);
-                Toast.makeText(getApplicationContext(), "What is " + movie.getTitle(), Toast.LENGTH_LONG).show();
+                Movie movie = mAdapter.getItem(position);
+                Intent detailIntent = new Intent(MovieFragment.this, MovieDetail.class);
+                String  title = movie.getTitle();
+                String description = movie.getDescription();
+                String image = movie.getImage();
+
+                detailIntent.putExtra("Movie", title);
+                detailIntent.putExtra("Plot", description);
+                detailIntent.putExtra("Image", image);
+                startActivity(detailIntent);
 
             }
         });

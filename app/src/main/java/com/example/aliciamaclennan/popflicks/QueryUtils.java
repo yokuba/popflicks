@@ -148,7 +148,6 @@ public final class QueryUtils {
             // which represents a list of movies.
             JSONArray movieArray = baseJsonResponse.getJSONArray("results");
 
-            // For each earthquake in the movieArray, create an {@link movie} object
             for (int i = 0; i < movieArray.length(); i++) {
 
                 // Get a single movie at position i within the list of earthquakes
@@ -159,34 +158,26 @@ public final class QueryUtils {
                 // for that movie.
                 String title = currentMovie.getString("title");
 
-                // Extract the value for the key called "mag"
                 String release = currentMovie.getString("release_date");
 
-                // Extract the value for the key called "place"
                 String description = currentMovie.getString("overview");
 
-                // Extract the value for the key called "time"
                 String poster = currentMovie.getString("poster_path");
 
                 // This is to get the movie poster, but will be a separate call
                 String url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + poster;
 
-                // Create a new {@link Earthquake} object with the magnitude, location, time,
-                // and url from the JSON response.
+
                 Movie movie = new Movie(title, description, release, poster);
 
-                // Add the new {@link Earthquake} to the list of earthquakes.
                 movies.add(movie);
             }
 
         } catch (JSONException e) {
-            // If an error is thrown when executing any of the above statements in the "try" block,
-            // catch the exception here, so the app doesn't crash. Print a log message
-            // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+
+            Log.e("QueryUtils", "Problem parsing the movie JSON results", e);
         }
 
-        // Return the list of earthquakes
         return movies;
     }
 
