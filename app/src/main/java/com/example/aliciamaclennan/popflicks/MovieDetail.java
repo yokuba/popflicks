@@ -20,6 +20,7 @@ public class MovieDetail extends FragmentActivity {
     TextView movieTitle;
     TextView moviePlot;
     ImageView moviePoster;
+    TextView movieRelease;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +31,16 @@ public class MovieDetail extends FragmentActivity {
         movieTitle = (TextView) findViewById(R.id.title);
         moviePlot = (TextView) findViewById(R.id.description);
         moviePoster = (ImageView) findViewById(R.id.movie_thumbnail);
+        movieRelease = (TextView) findViewById(R.id.release_date);
 
         Intent intent = getIntent();
         String title = intent.getStringExtra("Movie");
         String description = intent.getStringExtra("Plot");
         String image = intent.getStringExtra("Image");
+        String release = intent.getStringExtra("Release");
         movieTitle.setText(title);
         moviePlot.setText(description);
+        movieRelease.setText(release);
 
         ViewHolder holder = new ViewHolder();
         holder.imageview = moviePoster;

@@ -72,10 +72,12 @@ public class MovieFragment  extends AppCompatActivity implements LoaderManager.L
                 String  title = movie.getTitle();
                 String description = movie.getDescription();
                 String image = movie.getImage();
+                String release = movie.getRelease();
 
                 detailIntent.putExtra("Movie", title);
                 detailIntent.putExtra("Plot", description);
                 detailIntent.putExtra("Image", image);
+                detailIntent.putExtra("Release", release);
                 startActivity(detailIntent);
 
             }
