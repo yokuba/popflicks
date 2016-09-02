@@ -8,7 +8,7 @@ import android.widget.Spinner;
 /**
  * Created by amac on 8/30/16.
  */
-public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
+public class SearchActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
 
     public void onItemSelected(AdapterView<?> parent, View view,
