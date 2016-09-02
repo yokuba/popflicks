@@ -44,7 +44,6 @@ public class MovieFragment  extends AppCompatActivity implements LoaderManager.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final Context mContext = getApplicationContext();
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -57,21 +56,28 @@ public class MovieFragment  extends AppCompatActivity implements LoaderManager.L
                 new AdapterView.OnItemSelectedListener() {
                     public void onItemSelected(
                             AdapterView<?> parent, View view, int position, long id) {
-                    String url = MOVIE_REQUEST_URL + NOW_PLAYING;
-                        if (position == 1){
-                        url = MOVIE_REQUEST_URL + POPULAR;
+                        String url = MOVIE_REQUEST_URL + NOW_PLAYING;
+                        if (position == 1) {
+                            url = MOVIE_REQUEST_URL + POPULAR;
+                            Intent intent = new Intent(getApplicationContext(), SortActivity.class);
+                            intent.putExtra("url", url);
+                            startActivity(intent);
                         } else if (position == 2) {
-                        url = MOVIE_REQUEST_URL + HIGHEST_RATED;
+                            url = MOVIE_REQUEST_URL + HIGHEST_RATED;
+                            Intent intent = new Intent(getApplicationContext(), SortActivity.class);
+                            intent.putExtra("url", url);
+                            startActivity(intent);
                         }
                         Toast.makeText(getApplicationContext(), "this position: " + position, Toast.LENGTH_SHORT).show();
 
-                        if (findViewById(R.id.container) != null) {
+//                        findViewById(R.id.container);
 
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.container, new SortActivity(), "Sort Activity")
-                                        .commit();
-                            }
                     }
+
+//                                getSupportFragmentManager().beginTransaction()
+//                                        .add(R.id.container, new SortActivity(), "Sort Activity")
+//                                        .commit();
+//                            }
 
                     public void onNothingSelected(AdapterView<?> parent) {
 
