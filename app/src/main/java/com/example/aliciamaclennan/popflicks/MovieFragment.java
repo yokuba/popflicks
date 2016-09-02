@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,22 +29,22 @@ public class MovieFragment  extends AppCompatActivity implements LoaderManager.L
 
 
     private static final String LOG_TAG = MovieActivity.class.getName();
-    private static final String HIGHEST_RATED = "/top_rated";
-    private static final String POPULAR = "/popular";
-    private static final String NOW_PLAYING = "/now_playing";
+    private static final String HIGHEST_RATED = "/top_rated"+ "?api_key=" + BuildConfig.THE_MOVIE_DB_API_KEY;
+    private static final String POPULAR = "/popular"+ "?api_key=" + BuildConfig.THE_MOVIE_DB_API_KEY;
+    private static final String NOW_PLAYING = "/now_playing"+ "?api_key=" + BuildConfig.THE_MOVIE_DB_API_KEY;
     private static final String MOVIE_REQUEST_URL =
-            "https://api.themoviedb.org/3/movie" + NOW_PLAYING + "?api_key=" + BuildConfig.THE_MOVIE_DB_API_KEY;
+            "https://api.themoviedb.org/3/movie";
 
     private static final int MOVIE_LOADER_ID = 1;
     private MovieAdapter mAdapter;
     private TextView mEmptyStateTextView;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final Context mContext = getApplicationContext();
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -52,6 +53,30 @@ public class MovieFragment  extends AppCompatActivity implements LoaderManager.L
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(
+                            AdapterView<?> parent, View view, int position, long id) {
+                    String url = MOVIE_REQUEST_URL + NOW_PLAYING;
+                        if (position == 1){
+                        url = MOVIE_REQUEST_URL + POPULAR;
+                        } else if (position == 2) {
+                        url = MOVIE_REQUEST_URL + HIGHEST_RATED;
+                        }
+                        Toast.makeText(getApplicationContext(), "this position: " + position, Toast.LENGTH_SHORT).show();
+
+                        if (findViewById(R.id.container) != null) {
+
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.container, new SortActivity(), "Sort Activity")
+                                        .commit();
+                            }
+                    }
+
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
 
         // Find a reference to the {@link ListView} in the layout
         final GridView movieListView = (GridView) findViewById(R.id.movie_list);
@@ -73,11 +98,13 @@ public class MovieFragment  extends AppCompatActivity implements LoaderManager.L
                 String description = movie.getDescription();
                 String image = movie.getImage();
                 String release = movie.getRelease();
+                String voteAvg = movie.getVoteAvg();
 
                 detailIntent.putExtra("Movie", title);
                 detailIntent.putExtra("Plot", description);
                 detailIntent.putExtra("Image", image);
                 detailIntent.putExtra("Release", release);
+                detailIntent.putExtra("voteAvg", voteAvg);
                 startActivity(detailIntent);
 
             }
@@ -113,7 +140,7 @@ public class MovieFragment  extends AppCompatActivity implements LoaderManager.L
     @Override
     public android.content.Loader<List<Movie>> onCreateLoader(int i, Bundle bundle) {
         // Create a new loader for the given URL
-        return new MovieLoader(this, MOVIE_REQUEST_URL);
+        return new MovieLoader(this, MOVIE_REQUEST_URL + NOW_PLAYING);
     }
 
     @Override
@@ -141,18 +168,6 @@ public class MovieFragment  extends AppCompatActivity implements LoaderManager.L
         // Loader reset, so we can clear out our existing data.
         mAdapter.clear();
     }
-       // setContentView(R.layout.settings_activity);
 }
-
-//    @Override
-//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//    }
-
-
-//    public static class MovieDetail extends PreferenceFragment {
-//
-//    }
-
 
 

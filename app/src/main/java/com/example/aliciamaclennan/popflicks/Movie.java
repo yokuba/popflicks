@@ -13,12 +13,15 @@ public class Movie {
 
     private String mPoster;
 
+    private  String mVoteAvg;
 
-    public Movie(String title, String description, String release, String poster) {
+
+    public Movie(String title, String description, String release, String poster, String voteAvg) {
         mTitle = title;
         mDescription = description;
         mRelease = release;
         mPoster = poster;
+        mVoteAvg = voteAvg;
     }
 
     public String getTitle() { return mTitle; }
@@ -27,5 +30,6 @@ public class Movie {
     }
     public String getRelease() { return mRelease; }
     public String getImage() { return mPoster; }
+    public String getVoteAvg() { return mVoteAvg; }
 }
 

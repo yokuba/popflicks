@@ -44,10 +44,10 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Extract relevant fields from the JSON response and create a list of {@link Earthquake}s
+        // Extract relevant fields from the JSON response and create a list of movies
         List<Movie> movies = extractFeatureFromJson(jsonResponse);
 
-        // Return the list of {@link Earthquake}s
+        // Return the list of movies
         return movies;
     }
 
@@ -133,7 +133,7 @@ public final class QueryUtils {
             return null;
         }
 
-        // Create an empty ArrayList that we can start adding earthquakes to
+        // Create an empty ArrayList that we can start adding movies to
         List<Movie> movies = new ArrayList<>();
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
@@ -150,7 +150,7 @@ public final class QueryUtils {
 
             for (int i = 0; i < movieArray.length(); i++) {
 
-                // Get a single movie at position i within the list of earthquakes
+                // Get a single movie at position i within the list of movies
                 JSONObject currentMovie = movieArray.getJSONObject(i);
 
                 // For a given movie, extract the JSONObject associated with the
@@ -166,9 +166,10 @@ public final class QueryUtils {
 
                 // This is to get the movie poster, but will be a separate call
                 String url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + poster;
+                String voteAvg = currentMovie.getString("vote_average");
 
 
-                Movie movie = new Movie(title, description, release, poster);
+                Movie movie = new Movie(title, description, release, poster, voteAvg);
 
                 movies.add(movie);
             }

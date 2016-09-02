@@ -21,6 +21,7 @@ public class MovieDetail extends FragmentActivity {
     TextView moviePlot;
     ImageView moviePoster;
     TextView movieRelease;
+    TextView movieVoteAvg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +33,17 @@ public class MovieDetail extends FragmentActivity {
         moviePlot = (TextView) findViewById(R.id.description);
         moviePoster = (ImageView) findViewById(R.id.movie_thumbnail);
         movieRelease = (TextView) findViewById(R.id.release_date);
-
+        movieVoteAvg = (TextView) findViewById(R.id.average_vote);
         Intent intent = getIntent();
         String title = intent.getStringExtra("Movie");
         String description = intent.getStringExtra("Plot");
         String image = intent.getStringExtra("Image");
         String release = intent.getStringExtra("Release");
+        String voteAvg = intent.getStringExtra("voteAvg");
         movieTitle.setText(title);
         moviePlot.setText(description);
         movieRelease.setText(release);
+        movieVoteAvg.setText(voteAvg);
 
         ViewHolder holder = new ViewHolder();
         holder.imageview = moviePoster;
