@@ -12,7 +12,7 @@ public class MovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
-            setContentView(R.layout.activity_main);
+           // setContentView(R.layout.activity_main);
             Intent gridIntent = new Intent(this, MovieFragment.class);
             startActivity(gridIntent);
         }
