@@ -31,7 +31,7 @@ import java.util.List;
 
 
 
-    private static final String LOG_TAG = MovieActivity.class.getName();
+    private static final String LOG_TAG = MainActivity.class.getName();
     private static final String HIGHEST_RATED = "/top_rated"+ "?api_key=" + BuildConfig.THE_MOVIE_DB_API_KEY;
     private static final String POPULAR = "/popular"+ "?api_key=" + BuildConfig.THE_MOVIE_DB_API_KEY;
     private static final String NOW_PLAYING = "/now_playing"+ "?api_key=" + BuildConfig.THE_MOVIE_DB_API_KEY;

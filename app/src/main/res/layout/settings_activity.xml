@@ -5,7 +5,7 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:background="#9A72BA"
-          tools:context="com.example.aliciamaclennan.popflicks.MovieActivity"
+          tools:context=".MainActivity"
           android:id="@+id/popular">
      <Button
          android:id="@+id/most_popular_movies"
