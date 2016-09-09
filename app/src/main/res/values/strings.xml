@@ -6,7 +6,7 @@
     <string name="settings_title">Search Movies</string>
     <string name="avg">Rating:</string>
     <string-array name="search_array">
-        <item>Search Movies</item>
+        <item>Now Playing</item>
         <item>Most Popular</item>
         <item>Highest Rated</item>
     </string-array>
