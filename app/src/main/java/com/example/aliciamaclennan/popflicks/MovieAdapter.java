@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.InputStream;
 import java.util.List;
 
@@ -18,10 +20,13 @@ import java.util.List;
  * Created by amac on 8/27/16.
  */
 public class MovieAdapter extends ArrayAdapter<Movie>  {
-
+    private Context context;
+    private List<Movie> movies;
 
     public MovieAdapter(Context context, List<Movie> movies) {
         super(context, 0, movies);
+        this.context = context;
+        this.movies = movies;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -31,17 +36,33 @@ public class MovieAdapter extends ArrayAdapter<Movie>  {
             gridItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.movie_list_item, parent, false);
         }
-
-
         Movie currentMovie = getItem(position);
-
         ViewHolder holder = new ViewHolder();
         holder.imageview = (ImageView) gridItemView.findViewById(R.id.movie_thumbnail);
 
         gridItemView.setTag(holder);
 
+        String urldisplay = "https://image.tmdb.org/t/p/w60_and_h90_bestv2" + currentMovie.getImage();
+
         holder.imageview.setImageResource(R.drawable.ic_pop_action);
-        new DownloadImageTask(holder.imageview).execute(currentMovie.getImage());
+//        new DownloadImageTask(holder.imageview).execute(currentMovie.getImage());
+
+        Picasso
+                .with(context)
+                .load(urldisplay)
+                .fit() // will explain later
+                .into((ImageView) gridItemView.findViewById(R.id.movie_thumbnail));
+
+
+//        Movie currentMovie = getItem(position);
+
+//        ViewHolder holder = new ViewHolder();
+//        holder.imageview = (ImageView) gridItemView.findViewById(R.id.movie_thumbnail);
+//
+//        gridItemView.setTag(holder);
+//
+//        holder.imageview.setImageResource(R.drawable.ic_pop_action);
+//        new DownloadImageTask(holder.imageview).execute(currentMovie.getImage());
 
     // Return the list item view that is now showing the appropriate data
     return gridItemView;
