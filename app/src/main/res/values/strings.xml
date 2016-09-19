@@ -5,6 +5,7 @@
     <string name="settings_menu_item">Settings</string>
     <string name="settings_title">Search Movies</string>
     <string name="avg">Rating:</string>
+    <string name="title_activity_settings">title</string>
     <string-array name="search_array">
         <item>Now Playing</item>
         <item>Most Popular</item>
